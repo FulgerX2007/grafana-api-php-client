@@ -3,12 +3,17 @@
     "description": "Grafana API",
     "type": "library",
     "require": {
-        "php": "7.3"
+        "php": "^7.3"
     },
     "authors": [
         {
             "name": "Andrian Iliev",
             "email": "fulgerx2007@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "FulgerX2007\\Grafana\\":"src/"
+        }
+    }
 }
