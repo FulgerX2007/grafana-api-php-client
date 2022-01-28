@@ -1,0 +1,14 @@
+{
+    "name": "fulgerx2007/grafana-api",
+    "description": "Grafana API",
+    "type": "library",
+    "require": {
+        "php": "7.3"
+    },
+    "authors": [
+        {
+            "name": "Andrian Iliev",
+            "email": "fulgerx2007@gmail.com"
+        }
+    ]
+}
