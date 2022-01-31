@@ -4,14 +4,13 @@ namespace FulgerX2007\Grafana;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 final class Request
 {
     /** @var Client */
     private static $request;
-    /** @var string[] */
+    /** @var non-empty-array<string> */
     private static $headers;
     /** @var string */
     private static $grafana_url;

@@ -27,13 +27,14 @@ class Team implements Jsonable, Arrayable
      */
     public function getJson(): string
     {
-        $data['name'] = $this->name;
-        $data['email'] = $this->email;
-        $data['orgId'] = $this->org_id;
+        $data = ['name' => $this->name, 'email' => $this->email, 'orgId' => $this->org_id];
 
         return json_encode($data, JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @return array<string,int|string>
+     */
     public function getArray(): array
     {
         return ['name' => $this->name, 'email' => $this->email, 'orgId' => $this->org_id];

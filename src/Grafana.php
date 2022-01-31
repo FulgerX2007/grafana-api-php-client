@@ -35,7 +35,7 @@ class Grafana
 
     public function folder(): Folder
     {
-        return new Folder();
+        return new Folder(self::$request);
     }
 
     public function folderPermission(): FolderPermission

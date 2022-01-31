@@ -5,7 +5,8 @@
   "require": {
     "php": "^7.3",
     "guzzlehttp/guzzle": "^7.4",
-    "ext-json": "*"
+    "ext-json": "*",
+    "nunomaduro/phpinsights": "^1.14"
   },
   "authors": [
     {
@@ -16,6 +17,11 @@
   "autoload": {
     "psr-4": {
       "FulgerX2007\\Grafana\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   }
 }

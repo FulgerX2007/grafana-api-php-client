@@ -18,9 +18,7 @@ class Team
     }
 
     /**
-     * @param TeamEntity $team
      * @throws JsonException
-     * @return ResponseInterface
      */
     public function add(TeamEntity $team): ResponseInterface
     {
