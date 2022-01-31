@@ -1,7 +1,8 @@
 {
   "name": "fulgerx2007/grafana-api",
-  "description": "Grafana API",
+  "description": "Grafana API client",
   "type": "library",
+  "license": "MIT",
   "require": {
     "php": "^7.3",
     "guzzlehttp/guzzle": "^7.4",
