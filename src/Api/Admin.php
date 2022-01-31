@@ -1,6 +1,6 @@
 <?php
 
-namespace FulgerX2007\Grafana;
+namespace FulgerX2007\Grafana\Api;
 
 class Admin
 {
