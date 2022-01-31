@@ -2,10 +2,11 @@
 
 namespace FulgerX2007\Grafana\Entity;
 
+use FulgerX2007\Grafana\Interfaces\Arrayable;
 use FulgerX2007\Grafana\Interfaces\Jsonable;
 use JsonException;
 
-class Team implements Jsonable
+class Team implements Jsonable, Arrayable
 {
     /** @var string */
     private $name;
@@ -31,5 +32,10 @@ class Team implements Jsonable
         $data['orgId'] = $this->org_id;
 
         return json_encode($data, JSON_THROW_ON_ERROR);
+    }
+
+    public function getArray(): array
+    {
+        return ['name' => $this->name, 'email' => $this->email, 'orgId' => $this->org_id];
     }
 }

@@ -48,4 +48,26 @@ class Team
         $uri = '/api/teams/' . $team_id;
         return self::$request::get($uri);
     }
+
+    public function addMember(int $team_id, int $user_id): ResponseInterface
+    {
+        $uri = '/api/teams/' . $team_id . '/members';
+        $content = '{"userId": ' . $user_id . '}';
+
+        return self::$request::post($uri, $content);
+    }
+
+    public function getMembers(int $team_id): ResponseInterface
+    {
+        $uri = '/api/teams/' . $team_id . '/members';
+
+        return self::$request::get($uri);
+    }
+
+    public function removeMember(int $team_id, int $user_id): ResponseInterface
+    {
+        $uri = '/api/teams/' . $team_id . '/members/' . $user_id;
+
+        return self::$request::delete($uri);
+    }
 }

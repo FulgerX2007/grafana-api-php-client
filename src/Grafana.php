@@ -11,8 +11,7 @@ use FulgerX2007\Grafana\Api\User;
 
 class Grafana
 {
-    /** @var string */
-    protected static $credential;
+    /** @var Request */
     protected static $request;
 
     public function __construct(
