@@ -11,13 +11,22 @@ use FulgerX2007\Grafana\Api\User;
 
 class Grafana
 {
-    public function __construct(string $login, string $password)
-    {
+    /** @var string */
+    protected static $credential;
+    protected static $request;
+
+    public function __construct(
+        string $login = 'admin',
+        string $password = 'admin',
+        string $grafana_url = 'http://localhost:3000'
+    ) {
+        $credential = base64_encode($login . ':' . $password);
+        self::$request = new Request($credential, $grafana_url);
     }
 
     public function team(): Team
     {
-        return new Team();
+        return new Team(self::$request);
     }
 
     public function user(): User
