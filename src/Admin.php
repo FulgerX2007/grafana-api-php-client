@@ -6,6 +6,5 @@ class Admin
 {
     public function getSettings()
     {
-
-}
+    }
 }
