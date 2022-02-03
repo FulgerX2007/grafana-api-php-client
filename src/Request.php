@@ -2,13 +2,16 @@
 
 namespace FulgerX2007\Grafana;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
 
 final class Request
 {
-    /** @var Client */
+    /** @var string */
+    private const CONTENT_TYPE = 'application/json';
+
+    /** @var Http */
     private static $request;
     /** @var non-empty-array<string> */
     private static $headers;
@@ -18,82 +21,33 @@ final class Request
     public function __construct(string $credential, string $grafana_url)
     {
         self::$grafana_url = $grafana_url;
-        self::$request = new Client();
         self::$headers = [
             'Authorization' => 'Basic ' . $credential,
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];
+        self::$request = new Http();
     }
 
-    public static function request(): Client
+    public static function post(string $uri, string $content): Response
     {
-        return new Client();
+        return self::$request::withHeaders(self::$headers)
+            ->withBody($content, self::CONTENT_TYPE)->post(self::$grafana_url . $uri);
     }
 
-    public static function post(string $uri, string $content): ResponseInterface
+    public static function put(string $uri, string $content): Response
     {
-        try {
-            $response = self::$request->post(
-                self::$grafana_url . $uri,
-                [
-                    'headers' => self::$headers,
-                    'body' => $content
-                ]
-            );
-        } catch (ClientException $exception) {
-            return $exception->getResponse();
-        }
-
-        return $response;
+        return self::$request::withHeaders(self::$headers)
+            ->withBody($content, self::CONTENT_TYPE)->put(self::$grafana_url . $uri);
     }
 
-    public static function put(string $uri, string $content): ResponseInterface
+    public static function delete(string $uri): Response
     {
-        try {
-            $response = self::$request->put(
-                self::$grafana_url . $uri,
-                [
-                    'headers' => self::$headers,
-                    'body' => $content
-                ]
-            );
-        } catch (ClientException $exception) {
-            return $exception->getResponse();
-        }
-
-        return $response;
+        return self::$request::withHeaders(self::$headers)->delete(self::$grafana_url . $uri);
     }
 
-    public static function delete(string $uri): ResponseInterface
+    public static function get(string $uri): Response
     {
-        try {
-            $response = self::$request->delete(
-                self::$grafana_url . $uri,
-                [
-                    'headers' => self::$headers
-                ]
-            );
-        } catch (ClientException $exception) {
-            return $exception->getResponse();
-        }
-
-        return $response;
-    }
-
-    public static function get(string $uri): ResponseInterface
-    {
-        try {
-            $response = self::$request->get(
-                self::$grafana_url . $uri,
-                [
-                    'headers' => self::$headers
-                ]
-            );
-        } catch (ClientException $exception) {
-            return $exception->getResponse();
-        }
-
-        return $response;
+        return self::$request::withHeaders(self::$headers)->get(self::$grafana_url . $uri);
     }
 }

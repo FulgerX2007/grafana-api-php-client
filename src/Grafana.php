@@ -14,13 +14,14 @@ class Grafana
     /** @var Request */
     protected static $request;
 
-    public function __construct(
-        string $login = 'admin',
-        string $password = 'admin',
-        string $grafana_url = 'http://localhost:3000'
-    ) {
+    public function __construct(array $config)
+    {
+        $login = $config['login'] ?? 'admin';
+        $password = $config['password'] ?? 'admin';
+        $host = $config['host'] ?? 'http://localhost:3000';
+
         $credential = base64_encode($login . ':' . $password);
-        self::$request = new Request($credential, $grafana_url);
+        self::$request = new Request($credential, $host);
     }
 
     public function team(): Team

@@ -1,5 +1,10 @@
 # Grafana API 
 
+## Installation
+
+ * `composer require fulgerx2007\grafana-api`
+ * `php artisan vendor:publish`
+
 ### How to use
 **Example**
 ```php
